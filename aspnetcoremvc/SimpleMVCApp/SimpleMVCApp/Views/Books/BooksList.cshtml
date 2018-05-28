@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{ 
+    foreach (var book in ViewBag.Books)
+    {
+        <h2>@book.Title</h2>
+    }
+}
+
+<div>
+    noch immer books-list
+</div>
+
+<div>
+    @Html.Partial("MyPartialView")
+</div>
+
+<div>
+    @{ 
+        Html.RenderPartial("MyPartialView");
+    }
+</div>
+
+
+@section mysection
+{
+    <h3>this is from the view</h3>
+}
+
+
+
