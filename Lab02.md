@@ -14,9 +14,7 @@
 Questions:
 
 1. How is the *HelloController* instantiated?
-via ServiceProvider
 2. What happens if the IHelloService implementation cannot be found?
-fliegt um die Ohren, ausser es gibt parameterlosen Contruktor (gefährlich) -> Was passiert mit mehreren Konstruktoren?
 
 ## Configuration
 
@@ -31,9 +29,7 @@ fliegt um die Ohren, ausser es gibt parameterlosen Contruktor (gefährlich) -> W
 Questions:
 
 1. How can inner sections be retrieved?
-GetSection
 2. Is it possible to get all configured values?
-?
 3. What happens if the same value is configured multiple times?
 4. What are user secrets good for?
 
@@ -46,8 +42,9 @@ GetSection
 
 Questions:
 
-1. Why another logging framework?
-2. Does the logging framework support severity levels?
-3. Does the logging framework support scopes?
-4. Can logging be configured to use NLog?
+1. What logging framework did you use?
+2. Why another logging framework?
+3. Does the logging framework support severity levels?
+4. Does the logging framework support scopes?
+5. Can logging be configured to use NLog?
 
