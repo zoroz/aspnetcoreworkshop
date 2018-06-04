@@ -1,7 +1,7 @@
 # Lab 03 - ASP.NET Core
 
-1. Create an empty ASP.NET Core Web Application
-2. Add a simple HTML page (e.g. HelloWorld.html)
+1. Create an empty ASP.NET Core Web Application named `SimpleWebApp`
+2. Add a simple HTML page (e.g. Hello.html)
 3. Try to access this HTML page from the browser
 4. Enable returning a static HTML page
 5. Use the *Map* method to create a simple route returning content to the client
@@ -39,9 +39,5 @@
 Questions:
 
 1. What needs to be done to return static content like HTML, CSS, images...?
-UseStaticFiles()
 2. Which dependency injection framework is used with ASP.NET Core?
-Microsoft.Extensions.DependencyInjection, but anything can be used
 3. What are examples for pre-defined middleware?
-UseStaticFiles, Error/404 handling, MVC, ....
-

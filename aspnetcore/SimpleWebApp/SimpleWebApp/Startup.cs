@@ -6,30 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
-using System.IO;
-using SimpleWebApp.Services;
 using SimpleWebApp.MyControllers;
-using SimpleWebApp.Middleware;
+using SimpleWebApp.Services;
 
 namespace SimpleWebApp
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
-        {
-            IConfigurationBuilder builder = new ConfigurationBuilder()
-              .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("appsettings.json")
-              .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-              .AddEnvironmentVariables();
-
-            Configuration = builder.Build();
-        }
-
-        public IConfigurationRoot Configuration { get; }
-        
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -42,10 +25,8 @@ namespace SimpleWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,15 +34,13 @@ namespace SimpleWebApp
 
             app.UseStaticFiles();        // add middleware for static files
             app.UseSession();
-           // app.UseMyCustomMiddleware();
-
 
             app.Map("/mycontroller", app1 =>
             {
                 app1.Run(async context =>
                 {
                     string name = context.Request.Query["name"];
-                    HelloController controller = app1.ApplicationServices.GetService<HelloController>();
+                    var controller = app1.ApplicationServices.GetService<HelloController>();
                     string result = controller.Index(name);
                     await context.Response.WriteAsync(result);  // TODO: encoding!!
                 });
@@ -113,12 +92,10 @@ namespace SimpleWebApp
                     await context.Response.WriteAsync(result);
                 });
             });
-            
+
             app.Run(async (context) =>
             {
-                HttpRequest request = context.Request;
-
-                await context.Response.WriteAsync("<h1>Hello World!</h1>");
+                await context.Response.WriteAsync("Hello World!");
             });
         }
     }

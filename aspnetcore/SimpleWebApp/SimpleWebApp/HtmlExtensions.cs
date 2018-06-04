@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SimpleWebApp
+﻿namespace SimpleWebApp
 {
 
-        public static class HtmlExtensions
+    public static class HtmlExtensions
         {
             public static string Div(this string value) =>
                 $"<div>{value}</div>";
