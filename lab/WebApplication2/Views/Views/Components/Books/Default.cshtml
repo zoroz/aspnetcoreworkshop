@@ -1,0 +1,15 @@
+﻿@model IEnumerable<WebApplication2.Models.Book>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h2>ViewComponent</h2>
+
+@foreach (var item in Model)
+{
+    <li>    @item.Id:
+        @item.Title
+        Released:
+        @item.Publisher
+    </li>
+}

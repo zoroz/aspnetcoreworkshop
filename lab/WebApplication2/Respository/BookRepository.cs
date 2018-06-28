@@ -2,20 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebApplication2.Models;
+using WebApplication2.ViewComponents;
 
 namespace WebApplication2.Respository
 {
     public class BookRepository : IBookRepository
     {
-        public Book GetBook()
+        private readonly BooksContext _context;
+
+        public BookRepository(BooksContext context)
         {
-            return new Book {Id = "1", Name = "First book", PublishedDate = DateTime.Now};
+            _context = context;
+        }
+        public Task<Book> GetBook(string id)
+        {
+            var set = _context.Set<Book>();
+            return set.FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public Task<List<Book>> GetBooks()
+        {
+            var set = _context.Set<Book>();
+            return set.ToListAsync();
         }
     }
 
     public interface IBookRepository
     {
-        Book GetBook();
+        Task<Book> GetBook(string id);
+        Task<List<Book>> GetBooks();
     }
 }

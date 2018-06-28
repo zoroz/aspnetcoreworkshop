@@ -52,13 +52,13 @@ namespace WebApplication2.Controller
         [Route("GetBook")]
         public IActionResult GetBook()
         {
-            return Json(_repo.GetBook());
+            return Json(_repo.GetBook("1"));
         }
 
         [Route("GetBook1")]
         public IActionResult GetBook1(IBookRepository repo)
         {
-            return Json(repo.GetBook());
+            return Json(repo.GetBook("2"));
         }
 
 

@@ -1,0 +1,30 @@
+﻿@model WebApplication2.Models.Book
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Book add</h4>
+<hr />
+<form method="post" action="Create">
+    @Html.LabelFor(i => i.Title)
+    @Html.TextBoxFor(i => i.Title)
+    @Html.ValidationMessageFor(i => i.Title)
+
+    <br />
+    @Html.LabelFor(i => i.Publisher)
+    @Html.TextBoxFor(i => i.Publisher)
+    @Html.ValidationMessageFor(i => i.Publisher)
+
+    <br />
+    @Html.LabelFor(i => i.Id)
+    @Html.TextBoxFor(i => i.Id)
+    @Html.ValidationMessageFor(i => i.Id)
+    <br />
+    <input type="submit" value="Create" />
+</form>
+<br/>
+    <a href="Index">Back to List</a>
+
